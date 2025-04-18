@@ -1,1 +1,1 @@
-export const API_URL  = 'https://chef-server-delta-one.vercel.app/'
+export const API_URL  = 'https://chef-server-delta-one.vercel.app'
