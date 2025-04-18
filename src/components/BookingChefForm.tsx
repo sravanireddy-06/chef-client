@@ -9,7 +9,7 @@ const BookChefForm = ({ chefId, userId }: { chefId: string; userId: string }) =>
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/bookings', {
+      await axios.post('https://chef-client-five.vercel.app/api/bookings', {
         chefId,
         userId,
         dateTime,
