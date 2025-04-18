@@ -5,7 +5,7 @@ const UserBookings = ({ userId }: { userId: string }) => {
     const [bookings, setBookings] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://chef-client-five.vercel.app/api/bookings/user/${userId}`)
+        axios.get(`https://chef-server-delta-one.vercel.app/api/bookings/user/${userId}`)
             .then(res => setBookings(res.data))
             .catch(err => console.error(err));
     }, [userId]);
