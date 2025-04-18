@@ -5,13 +5,19 @@ import { getUsers } from '../services/services';
 import { FaStar } from 'react-icons/fa';
 import avatar from '../../public/assets/avatar.png'
 import avatar2 from '../../public/assets/image.png'
-
+import BookChefForm from '../components/BookingChefForm';
+import UserBookings from '../components/UserBooking';
 
 const Dashboard = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const [showBookingForm, setShowBookingForm] = useState(false);
+    const [selectedChefId, setSelectedChefId] = useState(null);
+    const [showBookings, setShowBookings] = useState(false);
+    const userId = "USER_ID_HERE"; // Replace this with actual logged-in user ID
+
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -31,29 +37,41 @@ const Dashboard = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
+
     return (
-        <div className="p-5 bg-gray-100 min-h-screen flex flex-col items-center">
-            <h2 className="text-2xl font-bold mb-6">Chef Dashboard</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {users.map((user) => (
-                    <div key={user._id} className="bg-white shadow-md rounded-lg p-6 w-80 flex flex-col items-center">
-                        <img 
-                            src={user.avatar || avatar2} 
-                            alt="Profile Avatar" 
-                            className="w-24 h-24 rounded-full mb-4"
-                        />
-                        <p className="text-lg font-semibold flex items-center">
-                            <strong>Name:</strong> {user.name} 
-                            <FaStar className="text-yellow-500 ml-2" />
-                            <FaStar className="text-yellow-500 ml-2" />
-                            <FaStar className="text-yellow-500 ml-2" />
-                        </p>
-                        <p className="text-sm text-gray-600"><strong>Email:</strong> {user.email}</p>
-                    </div>
-                ))}
+        <>
+
+            <div className="absolute top-5 right-5">
+                <button
+                    onClick={() => setShowBookings(true)}
+                    className="bg-blue-600 text-white px-4 py-2 rounded"
+                >
+                    See Bookings
+                </button>
             </div>
-        </div>
+
+            <div>
+                <h1 className="text-2xl font-bold mb-4">Available Chefs</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {users.map(user => (
+                        <div key={user._id} className="border p-4 rounded shadow">
+                            <h2 className="text-lg font-semibold">{user.name}</h2>
+                            <p>{user.email}</p>
+                            <BookChefForm chefId={user._id} userId={"USER_ID_HERE"} />
+                        </div>
+                    ))}
+
+                    {showBookingForm && (
+                        <BookChefForm chefId={selectedChefId} userId={userId} onClose={() => setShowBookingForm(false)} />
+                    )}
+                    {showBookings && (
+                        <UserBookings userId={userId} onClose={() => setShowBookings(false)} />
+                    )}
+
+                </div>
+            </div>
+        </>
     );
-};
+}
 
 export default Dashboard;
