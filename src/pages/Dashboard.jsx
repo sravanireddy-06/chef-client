@@ -39,8 +39,8 @@ const Dashboard = () => {
 
     return (
         <>
-
-            <div className="top-5 right-5 mt-8 mb-8">
+        <div className="pt-8 pb-4">
+            <div className="mt-8 mb-8">
                 <button
                     type="submit"
                     onClick={() => setShowBookings(true)}
@@ -69,6 +69,7 @@ const Dashboard = () => {
                     )}
 
                 </div>
+            </div>
             </div>
         </>
     );
