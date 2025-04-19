@@ -40,15 +40,16 @@ const Dashboard = () => {
     return (
         <>
 
-        <div className="absolute top-5 right-5 mt-8"> 
+            <div className="top-5 right-5 mt-8 mb-8">
                 <button
+                    type="submit"
                     onClick={() => setShowBookings(true)}
                     className="bg-blue-600 text-white px-4 py-2 rounded"
+                    style={{ pointerEvents: 'auto' }} 
                 >
                     See Bookings
                 </button>
             </div>
-
             <div>
                 <h1 className="text-2xl font-bold mb-4">Available Chefs</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
