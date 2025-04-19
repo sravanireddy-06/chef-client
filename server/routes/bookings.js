@@ -3,7 +3,7 @@ const router = express.Router();
 const Booking = require('../models/Booking');
 
 // POST /api/bookings - Create a booking
-router.post('/', async (req, res) => {
+router.post('/book', async (req, res) => {
   try {
     const booking = new Booking(req.body);
     await booking.save();
