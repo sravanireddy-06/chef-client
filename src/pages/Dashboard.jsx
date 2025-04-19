@@ -16,8 +16,7 @@ const Dashboard = () => {
     const [showBookingForm, setShowBookingForm] = useState(false);
     const [selectedChefId, setSelectedChefId] = useState(null);
     const [showBookings, setShowBookings] = useState(false);
-    const userId = "USER_ID_HERE"; // Replace this with actual logged-in user ID
-
+    const userId = localStorage.getItem('userId');
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -41,7 +40,7 @@ const Dashboard = () => {
     return (
         <>
 
-            <div className="absolute top-5 right-5">
+        <div className="absolute top-5 right-5 mt-8"> 
                 <button
                     onClick={() => setShowBookings(true)}
                     className="bg-blue-600 text-white px-4 py-2 rounded"
@@ -57,7 +56,7 @@ const Dashboard = () => {
                         <div key={user._id} className="border p-4 rounded shadow">
                             <h2 className="text-lg font-semibold">{user.name}</h2>
                             <p>{user.email}</p>
-                            <BookChefForm chefId={user._id} userId={"USER_ID_HERE"} />
+                            <BookChefForm chefId={user._id} userId={userId} />
                         </div>
                     ))}
 

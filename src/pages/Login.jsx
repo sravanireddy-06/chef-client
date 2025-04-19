@@ -15,6 +15,8 @@ function Login() {
     e.preventDefault();
     const res = await login(formData)
     if(res.status == 200){
+      const userId = res.data.user.id; // Adjust this based on the actual structure of your response
+      localStorage.setItem('userId', userId); 
       navigate('/dashboard');
     }
     else{
